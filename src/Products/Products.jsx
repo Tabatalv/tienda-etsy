@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Products({ setCartProducts, cartProducts, setTotal }) {
+function Products({ setCartProducts, cartProducts, setTotal, setPay }) {
   const [productos, setProductos] = useState([]);
   const [error, setError] = useState(null);
   const titleRef = useRef();
@@ -48,6 +48,7 @@ function Products({ setCartProducts, cartProducts, setTotal }) {
       setCartProducts((prevCartProducts) => [...prevCartProducts]);
     }
     setTotal((prevTotal) => prevTotal + product.initialPrice);
+    setPay(false)
   };
 
   console.log(cartProducts);
