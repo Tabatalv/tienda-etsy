@@ -9,13 +9,14 @@ import {
 } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import '../App.css'
 
-function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, setCountCart, countCart, setCountActive, countActive}) {
+function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, setCountCart, countCart, setTotalActive, totalActive, setCountActive, countActive}) {
   const [toggle, setToggle] = useState(false);
-  const [totalActive, setTotalActive] = useState(true)
 
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
+   
   };
 
   const handleDelete = (id) => {
@@ -71,17 +72,16 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
 
   return (
     <>
-      <Navbar className="bg-body-tertiary">
+      <Navbar className="bg-header">
         <Container>
           <Navbar.Brand href="#home">
             <img
               alt=""
-              src="etsy.png"
-              width="30"
-              height="30"
-              className="d-inline-block align-top mx-2"
+              src="Etsy-Emblem.png"
+              
+              className="d-inline-block align-top mx-2 etsy"
             />
-            <Navbar.Text>Etsy</Navbar.Text>
+           
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
@@ -90,7 +90,7 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                 onClick={handleToggle}
                 className="bg-transparent border border-0"
               >
-                <div style={{position: 'relative'}}>
+                <div className="cartImg">
                 <img
 
                   alt=""
@@ -115,41 +115,41 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
         </Container>
       </Navbar>
       {toggle && (
-                <ListGroup className="d-flex flex-column align-items-end justify-content-center mx-5 p-10" style={{maxHeight: '35rem', position: 'absolute', right: '0', zIndex: '1', boxSizing: 'border-box'}} >
-                  <div style={{width: '35rem', height: '32rem', overflowY: 'scroll'}}>
+                <ListGroup className="d-flex flex-column align-items-end justify-content-center mx-5 listGroup" >
+                  <div className="divListGroup">
                   {cartProducts.map((cartProduct) => (
                     
                     <ListGroup.Item
                       key={cartProduct.id}
                       as="li"
-                      style={{boxSizing: 'border-box', marginTop: '0'}}
-                      className="d-flex justify-content-between align-items-start"
+                     
+                      className="d-flex justify-content-between align-items-start listGroupItem"
                     >
                       
                         <img src={cartProduct.image} className="w-25 h-100"/>
                  
                       
                       <div className="fw-bold mx-4 flex-grow-1">
-                        <p>{cartProduct.title}</p>
+                        <p className="title">{cartProduct.title}</p>
                         <div>
-                          <Button
+                          <Button className="btnHandler"
                             onClick={() =>
                               handleMinus(cartProduct.id, cartProduct.price)
                             }
-                          >
-                            -
+                          ><p className="text-center">-</p>
+                            
                           </Button>
                           <Form.Label>{cartProduct.cantidad}</Form.Label>
-                          <Button
+                          <Button className="btnHandler"
                             onClick={() =>
                               handleAdd(cartProduct.id, cartProduct.price)
                             }
-                          >
-                            +
+                          ><p className="text-center">+</p>
+                            
                           </Button>
                         </div>
-                        <p className="">
-                          Price: {cartProduct.price.toFixed(2)}€
+                        <p className="text-success">
+                         {cartProduct.price.toFixed(2)}€
                         </p>
                       </div>
 
@@ -164,7 +164,7 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                   
                     {totalActive && (
                       <div className="w-100" style={{marginTop: 'auto'}}>
-<Button onClick={handlePayment} className="bg-warning w-100 fw-bold text-uppercase fs-6">Buy - Total: {total.toFixed(2)}</Button>
+<Button onClick={handlePayment} className="w-100 fw-bold text-uppercase fs-6 btn">Buy - Total: {total.toFixed(2)}</Button>
                   </div>
                     )}
                     

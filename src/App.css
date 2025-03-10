@@ -1,0 +1,91 @@
+.card{
+    background-color: rgba(255, 151, 80, 1);
+}
+
+.cardImg{
+    object-fit: cover;
+    height: 22rem;
+}
+
+.cartImg{
+    position: relative; 
+}
+.bg-header{
+    background-color: rgb(255 115 19);
+}
+.title{
+    color: #ff8201;
+}
+.btn{
+    background-color: #ff8201;
+    
+}
+.etsy{
+    width: 5rem;
+}
+.list-group{
+    max-height: 35rem;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    box-sizing: border-box;
+
+}
+
+.divListGroup{
+    width: 35rem;
+    height: 32rem;
+    overflow-y: scroll;
+}
+
+.listGroupItem{
+    box-sizing: border-box;
+    margin-top: 0;
+}
+
+.listGroupPayment{
+    max-height: 43rem;
+    z-index: 1;
+    box-sizing: border-box;
+    position:static;
+
+}
+
+
+
+.bigDiv{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+
+}
+
+.formPayment{
+    width: 40rem;
+    overflow-y: scroll;
+    background-color: white;
+    z-index: 1;
+}
+
+.divListGroupItem{
+    width: 45rem;
+    height: 40rem;
+    overflow-y: scroll;
+}
+
+.listGroupItemPayment{
+    height: 13rem;
+    width: 44rem;
+    box-sizing: border-box;
+    margin-top: 0;
+}
+
+.btnHandler{
+    width: .5rem;
+    height: 1.5rem;
+}
+.radio{
+    width: .1rem;
+}

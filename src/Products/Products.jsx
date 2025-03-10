@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
 
-function Products({ setCartProducts, cartProducts, setTotal, setPay, setCountCart, setCountActive }) {
+function Products({
+  setCartProducts,
+  cartProducts,
+  setTotal,
+  setPay,
+  setCountCart,
+  setCountActive,
+  setTotalActive,
+}) {
   const [productos, setProductos] = useState([]);
-  const [error, setError] = useState(null);
-
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -23,7 +30,6 @@ function Products({ setCartProducts, cartProducts, setTotal, setPay, setCountCar
         setProductos(cosmeticos);
       })
       .catch((error) => {
-        setError(error);
         console.log("Error en la API ", error);
       });
   }, []);
@@ -45,37 +51,36 @@ function Products({ setCartProducts, cartProducts, setTotal, setPay, setCountCar
       prodExists.price += prodExists.initialPrice;
       setCartProducts((prevCartProducts) => [...prevCartProducts]);
     }
-    setCountCart((prevCountCart) => prevCountCart + 1)
+    setCountCart((prevCountCart) => prevCountCart + 1);
     setTotal((prevTotal) => prevTotal + product.initialPrice);
-    setPay(false)
-    setCountActive(true)
+    setPay(false);
+    setCountActive(true);
+    setTotalActive(true);
   };
 
   console.log(cartProducts);
   return (
-    <Container>
+    <Container >
       <Row>
-        <h1 className="text-warning text-center">Nuestros productos</h1>
+        <h1 className="title text-center">Our products</h1>
 
         {productos.map((producto) => (
-          <Col className="my-5" key={producto.id}>
+          <Col xs={12} md={4} lg={3} className="my-5 d-md-flex justify-content-center" key={producto.id}>
             <Card
-              className="border-5 border-warning"
+              className="border-2 border-warning"
               style={{ width: "18rem" }}
             >
               <Card.Img
-              
                 variant="top"
                 src={producto.image}
-                style={{ objectFit: "cover", height: "22rem" }}
+                className="cardImg"
               />
               <Card.Body className="text-center">
-                <Card.Title >{producto.title}</Card.Title>
+                <Card.Title>{producto.title}</Card.Title>
                 <Card.Text>{producto.description}</Card.Text>
-                <p className="text-success" >
-                  Price: {producto.price}€
-                </p>
+                <p className="text-success fw-bold fs-4">{producto.price}€</p>
                 <Button
+                  className="text-white fw-bold btn"
                   variant="warning"
                   onClick={() =>
                     addToCart(
