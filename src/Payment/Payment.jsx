@@ -25,11 +25,12 @@ function Payment({
 
   return (
     <>
-      <Container fluid className="bigDiv w-100 h-100">
-        <Row className="d-flex bg-white justify-content-center w-100 h-100">
-          <Col xs={12} md={6} lg={4}></Col>
+      <Container fluid className="bigDiv h-100 position-fixed top-0 bottom-0 left-0">
+        <Row className="d-flex bg-white justify-content-center h-100">
+          <Col xs={12} md={6} lg={4}>
+          <div className="overflow-auto divPayment">
 
-          <Form className="d-flex flex-column formPayment">
+          <Form className="d-flex flex-column formPayment mx-auto">
             <h3 className="title">Personal Data</h3>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -64,7 +65,7 @@ function Payment({
 
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label className="fw-bold">Address</Form.Label>
-              <Form.Control type="text" placeholder="Spain" />
+              <Form.Control type="text" placeholder="Address" />
             </Form.Group>
 
             <Form.Group className="mb-3 d-flex" controlId="formBasicName">
@@ -120,13 +121,13 @@ function Payment({
             >
               Buy
             </Button>
-          </Form>
+          </Form></div></Col>
           
 
-          <Col xs={12} md={6} lg={4} className="listGroupPayment">
+          <Col xs={12} md={6} lg={4} className="listGroupPayment d-none d-md-block">
 
-          <ListGroup className="d-flex flex-column justify-content-between h-100">
-            <div className="divListGroupItem flex-grow-1 overflow-auto">
+          <ListGroup className="d-flex flex-column justify-content-between h-100 overflow-auto">
+            <div className="divListGroupItem flex-grow-1 ">
               {cartProducts.map((cartProduct) => (
                 <ListGroup.Item
                   key={cartProduct.id}

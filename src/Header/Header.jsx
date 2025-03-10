@@ -90,11 +90,11 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                 onClick={handleToggle}
                 className="bg-transparent border border-0"
               >
-                <div className="cartImg">
+                <div className="cartImg position-relative">
                 <img
 
                   alt=""
-                  src="shopping-bag.png"
+                  src="shopping-bag-white.png"
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
@@ -103,7 +103,7 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                 
                   {countActive && (
                     <div>
-                    <Badge style={{position: 'absolute'}} className="bg-warning pill text-white">{countCart}</Badge>
+                    <Badge style={{position: 'absolute'}} className="bg-warning pill text-white ">{countCart}</Badge>
                         </div>
                   )}
                           
@@ -115,7 +115,7 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
         </Container>
       </Navbar>
       {toggle && (
-                <ListGroup className="d-flex flex-column align-items-end justify-content-center mx-5 listGroup w-sm-75 mh-75 " >
+                <ListGroup className="d-flex flex-column align-items-end justify-content-center mx-5 listGroup w-sm-75 mh-75 position-absolute" >
                   <div className="divListGroup">
                   {cartProducts.map((cartProduct) => (
                     
@@ -131,20 +131,19 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                       
                       <div className="fw-bold mx-4 flex-grow-1">
                         <p className="title">{cartProduct.title}</p>
-                        <div>
-                          <Button className="btnHandler "
+                        <div className="d-flex">
+                          <Button className="btnHandler d-flex align-items-center justify-content-center"
                             onClick={() =>
                               handleMinus(cartProduct.id, cartProduct.price)
                             }
-                          ><p className="text-center">-</p>
-                            
+                          >-                            
                           </Button>
                           <Form.Label>{cartProduct.cantidad}</Form.Label>
-                          <Button className="btnHandler "
+                          <Button className="btnHandler d-flex flex-column align-items-center justify-content-center"
                             onClick={() =>
                               handleAdd(cartProduct.id, cartProduct.price)
                             }
-                          ><p className="text-center">+</p>
+                          >+
                             
                           </Button>
                         </div>
@@ -154,7 +153,7 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                       </div>
 
                       <Badge
-                        className="text-dark bg-light"
+                        className="text-dark bg-light align-self-start"
                         onClick={() => handleDelete(cartProduct.id)}
                       >
                         <img src="x.png" width="10" height="10" />

@@ -7,9 +7,7 @@
     height: 22rem;
 }
 
-.cartImg{
-    position: relative; 
-}
+
 .bg-header{
     background-color: rgb(255 115 19);
 }
@@ -24,8 +22,7 @@
     width: 5rem;
 }
 .list-group{
-    max-height: 35rem;
-    position: absolute;
+    max-height: 42rem;
     right: 0;
     z-index: 1;
     box-sizing: border-box;
@@ -43,28 +40,15 @@
     margin-top: 0;
 }
 
-.listGroupPayment{
-    max-height: 43rem;
-    z-index: 1;
-    box-sizing: border-box;
-    position:static;
-
-}
 
 
 
 .bigDiv{
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
     z-index: 1;
 
 }
 
 .formPayment{
-    width: 40rem;
-    overflow-y: scroll;
     background-color: white;
     z-index: 1;
 }
@@ -89,6 +73,10 @@
 .radio{
     width: .1rem;
 }
+.divPayment{
+    height: 96vh;
+}
+
 
 @media (max-width: 576px) {
     .divListGroup{
