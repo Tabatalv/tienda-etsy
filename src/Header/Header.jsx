@@ -10,10 +10,11 @@ import {
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Header({ cartProducts, setCartProducts, total, setTotal, setPayment }) {
+function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, setCountCart, countCart, setCountActive, countActive}) {
   const [toggle, setToggle] = useState(false);
+  const [totalActive, setTotalActive] = useState(true)
 
-  const handleToggle = (e) => {
+  const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
@@ -21,8 +22,16 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment }) 
     const productIndex = cartProducts.findIndex(
       (cartProduct) => cartProduct.id === id
     );
+    const product = cartProducts.find((cartProduct) => cartProduct.id === id);
     cartProducts.splice(productIndex, 1);
+    setCountCart((prevCountCart) => prevCountCart - product.cantidad)
+    setTotal((prevTotal) => prevTotal - product.price)
     setCartProducts((prevCartProducts) => [...prevCartProducts]);
+
+    if(cartProducts.length < 1){
+      setCountActive(false)
+      setTotalActive(false)
+    }
   };
 
   const handleAdd = (id) => {
@@ -31,7 +40,7 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment }) 
     product.cantidad++;
     product.price += product.initialPrice;
     setTotal((prevTotal) => prevTotal + product.initialPrice);
-    console.log(total);
+    setCountCart((prevCountCart) => prevCountCart + 1)
     setCartProducts((prevCartProducts) => [...prevCartProducts]);
   };
   const handleMinus = (id) => {
@@ -39,11 +48,18 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment }) 
 
     if (product.cantidad < 2) {
       handleDelete(product.id);
+      
+    }
+
+    if(cartProducts.length < 1){
+      setTotalActive(false)
     }
     product.cantidad--;
     product.price -= product.initialPrice;
     setTotal((prevTotal) => prevTotal - product.initialPrice);
+    setCountCart((prevCountCart) => prevCountCart - 1)
     setCartProducts((prevCartProducts) => [...prevCartProducts]);
+    
   };
 
   const handlePayment = () => {
@@ -74,13 +90,24 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment }) 
                 onClick={handleToggle}
                 className="bg-transparent border border-0"
               >
+                <div style={{position: 'relative'}}>
                 <img
+
                   alt=""
                   src="shopping-bag.png"
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
+                  
                 />
+                
+                  {countActive && (
+                    <div>
+                    <Badge style={{position: 'absolute'}} className="bg-warning pill text-white">{countCart}</Badge>
+                        </div>
+                  )}
+                          
+                        </div>
               </Button>
               
             </Navbar.Brand>
@@ -98,7 +125,10 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment }) 
                       style={{boxSizing: 'border-box', marginTop: '0'}}
                       className="d-flex justify-content-between align-items-start"
                     >
-                      <img src={cartProduct.image} className="w-25 h-100" />
+                      
+                        <img src={cartProduct.image} className="w-25 h-100"/>
+                 
+                      
                       <div className="fw-bold mx-4 flex-grow-1">
                         <p>{cartProduct.title}</p>
                         <div>
@@ -131,10 +161,14 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment }) 
                       </Badge>
                     </ListGroup.Item>
                   ))}
-                  <div className="bg-white w-100">
+                  
+                    {totalActive && (
+                      <div className="w-100" style={{marginTop: 'auto'}}>
+<Button onClick={handlePayment} className="bg-warning w-100 fw-bold text-uppercase fs-6">Buy - Total: {total.toFixed(2)}</Button>
+                  </div>
+                    )}
                     
-                    <Button onClick={handlePayment} className="bg-warning w-100 fw-bold text-uppercase fs-6">Buy - Total: {total.toFixed(2)}</Button>
-                  </div></div>
+                  </div>
                 </ListGroup>
               )}
     </>

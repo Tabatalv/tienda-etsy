@@ -9,6 +9,8 @@ function App() {
   const [total, setTotal] = useState(0)
   const [payment, setPayment] = useState(false)
   const [pay, setPay] = useState(false)
+  const [countCart, setCountCart] = useState(0)
+  const [countActive, setCountActive] = useState(false)
 
   return (
     <>
@@ -16,11 +18,11 @@ function App() {
       <p className='text-white text-center w-100 h-75  fs-4 bg-success'>¡Products bought succesfully!</p>
     )}
   
-      <Header cartProducts={cartProducts} setCartProducts={setCartProducts} total={total} setTotal={setTotal} setPayment={setPayment}/>
+      <Header cartProducts={cartProducts} setCartProducts={setCartProducts} total={total} setTotal={setTotal} setPayment={setPayment} setCountCart={setCountCart} countCart={countCart} setCountActive={setCountActive} countActive={countActive} />
       {payment && (
-        <Payment cartProducts={cartProducts} setCartProducts={setCartProducts} setTotal={setTotal} total={total} setPayment={setPayment} setPay={setPay}/>
+        <Payment cartProducts={cartProducts} setCartProducts={setCartProducts} setTotal={setTotal} total={total} setPayment={setPayment} setPay={setPay} setCountCart={setCountCart}/>
       )}
-      <Products cartProducts={cartProducts} setCartProducts={setCartProducts} setTotal={setTotal} setPay={setPay}/>
+      <Products cartProducts={cartProducts} setCartProducts={setCartProducts} setTotal={setTotal} setPay={setPay} setCountCart={setCountCart} setCountActive={setCountActive}/>
     
     </>
     

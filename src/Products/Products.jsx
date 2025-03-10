@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Products({ setCartProducts, cartProducts, setTotal, setPay }) {
+function Products({ setCartProducts, cartProducts, setTotal, setPay, setCountCart, setCountActive }) {
   const [productos, setProductos] = useState([]);
   const [error, setError] = useState(null);
-  const titleRef = useRef();
-  const imgRef = useRef();
-  const priceRef = useRef();
+
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -47,8 +45,10 @@ function Products({ setCartProducts, cartProducts, setTotal, setPay }) {
       prodExists.price += prodExists.initialPrice;
       setCartProducts((prevCartProducts) => [...prevCartProducts]);
     }
+    setCountCart((prevCountCart) => prevCountCart + 1)
     setTotal((prevTotal) => prevTotal + product.initialPrice);
     setPay(false)
+    setCountActive(true)
   };
 
   console.log(cartProducts);
@@ -64,15 +64,15 @@ function Products({ setCartProducts, cartProducts, setTotal, setPay }) {
               style={{ width: "18rem" }}
             >
               <Card.Img
-                ref={imgRef}
+              
                 variant="top"
                 src={producto.image}
                 style={{ objectFit: "cover", height: "22rem" }}
               />
               <Card.Body className="text-center">
-                <Card.Title ref={titleRef}>{producto.title}</Card.Title>
+                <Card.Title >{producto.title}</Card.Title>
                 <Card.Text>{producto.description}</Card.Text>
-                <p className="text-success" ref={priceRef}>
+                <p className="text-success" >
                   Price: {producto.price}€
                 </p>
                 <Button
