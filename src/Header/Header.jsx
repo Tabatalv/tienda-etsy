@@ -72,8 +72,8 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
 
   return (
     <>
-      <Navbar className="bg-header">
-        <Container>
+      <Navbar className="bg-header" expand="lg">
+        <Container className="d-flex justify-content-between align-items-center">
           <Navbar.Brand href="#home">
             <img
               alt=""
@@ -83,8 +83,8 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
             />
            
           </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
+          
+          
             <Navbar.Brand>
               <Button
                 onClick={handleToggle}
@@ -111,11 +111,11 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
               </Button>
               
             </Navbar.Brand>
-          </Navbar.Collapse>
+      
         </Container>
       </Navbar>
       {toggle && (
-                <ListGroup className="d-flex flex-column align-items-end justify-content-center mx-5 listGroup" >
+                <ListGroup className="d-flex flex-column align-items-end justify-content-center mx-5 listGroup w-sm-75 mh-75 " >
                   <div className="divListGroup">
                   {cartProducts.map((cartProduct) => (
                     
@@ -123,16 +123,16 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                       key={cartProduct.id}
                       as="li"
                      
-                      className="d-flex justify-content-between align-items-start listGroupItem"
+                      className="d-flex justify-content-between align-items-center listGroupItem"
                     >
                       
-                        <img src={cartProduct.image} className="w-25 h-100"/>
+                        <img src={cartProduct.image} className="w-25 h-100 img-fluid me-2"/>
                  
                       
                       <div className="fw-bold mx-4 flex-grow-1">
                         <p className="title">{cartProduct.title}</p>
                         <div>
-                          <Button className="btnHandler"
+                          <Button className="btnHandler "
                             onClick={() =>
                               handleMinus(cartProduct.id, cartProduct.price)
                             }
@@ -140,7 +140,7 @@ function Header({ cartProducts, setCartProducts, total, setTotal, setPayment, se
                             
                           </Button>
                           <Form.Label>{cartProduct.cantidad}</Form.Label>
-                          <Button className="btnHandler"
+                          <Button className="btnHandler "
                             onClick={() =>
                               handleAdd(cartProduct.id, cartProduct.price)
                             }

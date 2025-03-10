@@ -89,3 +89,10 @@
 .radio{
     width: .1rem;
 }
+
+@media (max-width: 576px) {
+    .divListGroup{
+        width: 26rem;
+        margin-right: -3rem;
+    }
+}
