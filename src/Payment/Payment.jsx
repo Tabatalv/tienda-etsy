@@ -2,13 +2,15 @@ import {Button, Form, ListGroup} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-function Payment({cartProducts, setCartProducts, setTotal, total, setPayment, setPay}){
+function Payment({cartProducts, setCartProducts, setTotal, total, setPayment, setPay, setCountCart, setCountActive}){
 
     const handlePay = () => {
         setPayment(false)
         setPay(true)
         setCartProducts([])
         setTotal(0)
+        setCountCart(0)
+        setCountActive(false)
         
 
     }

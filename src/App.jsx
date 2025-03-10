@@ -20,7 +20,7 @@ function App() {
   
       <Header cartProducts={cartProducts} setCartProducts={setCartProducts} total={total} setTotal={setTotal} setPayment={setPayment} setCountCart={setCountCart} countCart={countCart} setCountActive={setCountActive} countActive={countActive} />
       {payment && (
-        <Payment cartProducts={cartProducts} setCartProducts={setCartProducts} setTotal={setTotal} total={total} setPayment={setPayment} setPay={setPay} setCountCart={setCountCart}/>
+        <Payment cartProducts={cartProducts} setCartProducts={setCartProducts} setTotal={setTotal} total={total} setPayment={setPayment} setPay={setPay} setCountCart={setCountCart} setCountActive={setCountActive}/>
       )}
       <Products cartProducts={cartProducts} setCartProducts={setCartProducts} setTotal={setTotal} setPay={setPay} setCountCart={setCountCart} setCountActive={setCountActive}/>
     
