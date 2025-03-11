@@ -60,12 +60,18 @@ function Products({
 
   console.log(cartProducts);
   return (
-    <Container >
+    <Container>
       <Row>
         <h1 className="title text-center">Our products</h1>
 
         {productos.map((producto) => (
-          <Col xs={12} md={4} lg={3} className="my-5 d-flex justify-content-center" key={producto.id}>
+          <Col
+            xs={12}
+            md={4}
+            lg={3}
+            className="my-5 d-flex justify-content-center"
+            key={producto.id}
+          >
             <Card
               className="border-2 border-warning"
               style={{ width: "18rem" }}
