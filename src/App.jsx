@@ -15,12 +15,14 @@ function App() {
 
   return (
     <>
+    {/* Si se han pagado por los productos, te sale este aviso de que se han comprado exitosamente */}
       {pay && (
         <p className="text-white text-center w-100 h-75 fs-4 bg-success my-0">
           ¡Products bought succesfully!
         </p>
       )}
 
+      {/* mostramos el header de la tienda, y los productos, les pasamos las variables de estado que necesitaremos para cada componente */}
       <Header
         cartProducts={cartProducts}
         setCartProducts={setCartProducts}
@@ -34,6 +36,8 @@ function App() {
         setCountActive={setCountActive}
         countActive={countActive}
       />
+
+      {/* Si se ha pulsado el boton de comprar en la cesta, se muestra el componente de pago, le pasamos las variables de estado que necesitaremos para cada componente */}
       {payment && (
         <Payment
           cartProducts={cartProducts}

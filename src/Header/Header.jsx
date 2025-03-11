@@ -11,6 +11,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 
+//Recogemos las variables de estado que necesitaremos
 function Header({
   cartProducts,
   setCartProducts,
@@ -24,12 +25,17 @@ function Header({
   setCountActive,
   countActive,
 }) {
+
+  //creamos toggle que nos ayudara a abrir y cerrar el carrito de compras
   const [toggle, setToggle] = useState(false);
 
+  //Función para abrir y cerrar el carrito, si ya esta abierto lo cierra, si no lo abre
   const handleToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
   };
 
+  //Función para eliminar productos del carrito tocando el boton de eliminar, obtenemos el id del producto que queremos eliminar y busca mediante findIndex el producto 
+  //que coincida con el id obtenido y lo elimina, mediante el useState actualizamos el contador de productos y el total, además de actualizar el carrito de compras
   const handleDelete = (id) => {
     const productIndex = cartProducts.findIndex(
       (cartProduct) => cartProduct.id === id
@@ -40,12 +46,15 @@ function Header({
     setTotal((prevTotal) => prevTotal - product.price);
     setCartProducts((prevCartProducts) => [...prevCartProducts]);
 
+    // si no hay productos en el carrito, el contador de productos y el total se desactivan
     if (cartProducts.length < 1) {
       setCountActive(false);
       setTotalActive(false);
     }
   };
 
+  //Función para aumentar la cantidad y el precio del producto tocando el boton de aumentar, buscamos el producto mediante find y aumentamos la cantidad y el precio
+  //actualizamos mediante el useState el contador de productos y el total, además del carrito de compras
   const handleAdd = (id) => {
     const product = cartProducts.find((cartProduct) => cartProduct.id === id);
 
@@ -55,6 +64,9 @@ function Header({
     setCountCart((prevCountCart) => prevCountCart + 1);
     setCartProducts((prevCartProducts) => [...prevCartProducts]);
   };
+
+  //Función para disminuir la cantidad y el precio del producto tocando el boton de disminuir, buscamos el producto mediante find y disminuimos la cantidad y el precio
+  //actualizamos mediante el useState el contador de productos y el total, tambien del carrito de compras
   const handleMinus = (id) => {
     const product = cartProducts.find((cartProduct) => cartProduct.id === id);
 
@@ -62,8 +74,10 @@ function Header({
       handleDelete(product.id);
     }
 
+    //Si no hay productos en el carrito, el total se desactiva
     if (cartProducts.length < 1) {
       setTotalActive(false);
+      
     }
     product.cantidad--;
     product.price -= product.initialPrice;
@@ -71,7 +85,7 @@ function Header({
     setCountCart((prevCountCart) => prevCountCart - 1);
     setCartProducts((prevCartProducts) => [...prevCartProducts]);
   };
-
+//si se toca el boton de comprar, se abre la ventana de pago y se oculta el carrito
   const handlePayment = () => {
     setPayment(true);
     setToggle(false);
@@ -79,6 +93,7 @@ function Header({
 
   return (
     <>
+    {/* Carrito hecho con bootstrap mostrando el producto elegido, con botones para agregar mas o quitar, y eliminarlo por completo del carrito, y el boton para comprar  */}
       <Navbar className="bg-header" expand="lg">
         <Container className="d-flex justify-content-between align-items-center">
           <Navbar.Brand href="#home">

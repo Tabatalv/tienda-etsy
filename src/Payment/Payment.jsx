@@ -2,6 +2,8 @@ import { Button, Form, ListGroup, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 
+
+//Recogemos las variables de estado que necesitaremos
 function Payment({
   cartProducts,
   setCartProducts,
@@ -13,6 +15,9 @@ function Payment({
   setCountActive,
   setTotalActive,
 }) {
+
+  //Función que se ejecutará una vez aceptemos comprar los productos, limpiaremos el carrito de compras, el contador de productos y el total, se oculta el
+  //contador de productos y la barra del total, se muestra el aviso de que se han comprado los productos y se oculta la ventana de pago
   const handlePay = () => {
     setPayment(false);
     setPay(true);
@@ -25,6 +30,7 @@ function Payment({
 
   return (
     <>
+    {/* formulario para rellenar los datos de envío y una muestra de lso productos que se vana  comprar */}
       <Container
         fluid
         className="bigDiv h-100 position-fixed top-0 bottom-0 left-0"
@@ -131,6 +137,7 @@ function Payment({
             </div>
           </Col>
 
+        {/* Si estamos en movil, se oculta la lista de productos */}
           <Col
             xs={12}
             md={6}
