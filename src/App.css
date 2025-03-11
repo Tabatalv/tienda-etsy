@@ -79,8 +79,12 @@
 
 
 @media (max-width: 576px) {
+    .title-mobile{
+        font-size: .8rem;
+    }
+
     .divListGroup{
-        width: 26rem;
+        width: 21rem;
         margin-right: -3rem;
     }
 }

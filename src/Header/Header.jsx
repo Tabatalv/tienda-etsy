@@ -133,7 +133,7 @@ function Header({
                 />
 
                 <div className="fw-bold mx-4 flex-grow-1">
-                  <p className="title">{cartProduct.title}</p>
+                  <p className="title title-mobile">{cartProduct.title}</p>
                   <div className="d-flex">
                     <Button
                       className="btnHandler d-flex align-items-center justify-content-center"
